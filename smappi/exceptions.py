@@ -1,0 +1,2 @@
+class PositionalArgumentsNotSupported(Exception):
+    pass
