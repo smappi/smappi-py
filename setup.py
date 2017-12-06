@@ -19,7 +19,7 @@ setup(
     url='http://github.com/smappi/smappi-py',
     license='MIT',
     packages=['smappi', ],
-    install_requires=['requests', ],
+    install_requires=[],
     zip_safe=False,
     include_package_data=True,
     classifiers=[
