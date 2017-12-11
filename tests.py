@@ -2,6 +2,7 @@ import unittest
 
 
 class TestGotoUrl(unittest.TestCase):
+
     def test_helper(self):
         from smappi import smappi
 
@@ -15,6 +16,10 @@ class TestGotoUrl(unittest.TestCase):
 
         self.assertEqual(
             smappi.Request('adw0rd/example', 'json').calculator(digits=[42, 42, 42]),
+            126
+        )
+        self.assertEqual(
+            smappi.Request('adw0rd/example', 'json').calculator(digits='42,42,42'),
             126
         )
             
