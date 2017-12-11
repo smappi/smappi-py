@@ -11,7 +11,7 @@ except:
 setup(
     name='smappi',
     version=__version__,
-    description="Python binding for Smappi API",
+    description="Python Client for Smappi API",
     long_description=long_description,
     keywords='smappi, api',
     author='Mikhail Andreev',
