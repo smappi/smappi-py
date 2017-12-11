@@ -1,6 +1,9 @@
 Python Client for Smappi API
 =============================
 
+.. image:: https://secure.travis-ci.org/smappi/smappi-py.png
+    :target: http://travis-ci.org/smappi/smappi-py
+
 Support python>=2.7, python>=3.0
 
 More information on https://smappi.org/
