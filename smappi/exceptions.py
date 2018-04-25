@@ -4,3 +4,7 @@ class PositionalArgumentsNotSupported(Exception):
 
 class SmappiServerError(Exception):
     pass
+
+
+class SmappiAPIError(SmappiServerError):
+    pass

@@ -10,7 +10,7 @@ except ImportError:
     from urllib import urlencode
     from urllib2 import urlopen, Request as Req, HTTPError
 
-from .exceptions import PositionalArgumentsNotSupported, SmappiServerError
+from .exceptions import PositionalArgumentsNotSupported, SmappiServerError, SmappiAPIError
 
 
 class Request(object):
@@ -35,6 +35,11 @@ class Request(object):
             except HTTPError as e:
                 raise SmappiServerError(e)
             if self._fmt == 'json':
-                return json.loads(res)
+                res = json.loads(res)
+                if 'error' in res:
+                    error = res['error']
+                    if 'message' in error:
+                        error = '{message} (code: {code})'.format(**error)
+                    raise SmappiAPIError(error)
             return res
         return wrap
