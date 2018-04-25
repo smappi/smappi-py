@@ -36,7 +36,7 @@ class Request(object):
                 raise SmappiServerError(e)
             if self._fmt == 'json':
                 res = json.loads(res)
-                if 'error' in res:
+                if isinstance(res, dict) and 'error' in res:
                     error = res['error']
                     if 'message' in error:
                         error = '{message} (code: {code})'.format(**error)
