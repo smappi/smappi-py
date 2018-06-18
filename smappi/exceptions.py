@@ -19,3 +19,7 @@ class SmappiServerError(Exception):
 
 class SmappiAPIError(SmappiServerError):
     pass
+
+
+class DeclarationError(Exception):
+    pass

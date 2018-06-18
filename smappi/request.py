@@ -10,19 +10,26 @@ except ImportError:
     from urllib import urlencode
     from urllib2 import urlopen, Request as Req, HTTPError
 
-from .exceptions import PositionalArgumentsNotSupported, SmappiServerError, SmappiAPIError
+from .exceptions import PositionalArgumentsNotSupported, SmappiServerError, SmappiAPIError, DeclarationError
 
 
 class Request(object):
 
-    def __init__(self, path, fmt='json'):
+    def __init__(self, path="", fmt='json', host=""):
         self._fmt = fmt
         self._path = path
+        self._host = host
+        if not path and not host:
+            raise DeclarationError()
 
     def __getattribute__(self, name):
         if name.startswith('_'):
             return super(Request, self).__getattribute__(name)
-        url = 'https://{s._fmt}.smappi.org/{s._path}/{func}'.format(s=self, func=name)
+        url = ""
+        if self._path:
+            url = 'https://{s._fmt}.smappi.org/{s._path}/{func}'.format(s=self, func=name)
+        elif self._host:
+            url = '{s._host}/{s._path}/{func}'.format(s=self, func=name)
         def wrap(*args, **kwargs):
             if args:
                 raise PositionalArgumentsNotSupported()
