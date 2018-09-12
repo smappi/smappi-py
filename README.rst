@@ -39,10 +39,10 @@ Or use the full version:
    >>> smappi.Request('adw0rd/example', 'json').calculator(digits='42,42,42')
    126
    
-For local development and debug use "host" argument:
+For local development and debug specify host as path:
 
 .. code:: python
 
     >>> from smappi import smappi
-    >>> smappi(host='localhost:8000').greeting(name='friend')
+    >>> smappi('localhost:8000').greeting(name='friend')
     "Hello, friend!"

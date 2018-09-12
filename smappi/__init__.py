@@ -1,7 +1,7 @@
-__version__ = '0.0.9'
+__version__ = '0.1.0'
 
 from .request import Request
 
 
-def smappi(path="", fmt='json', host=""):
-    return Request(path, fmt=fmt, host=host)
+def smappi(path='', fmt='json'):
+    return Request(path, fmt=fmt)

@@ -15,21 +15,20 @@ from .exceptions import PositionalArgumentsNotSupported, SmappiServerError, Smap
 
 class Request(object):
 
-    def __init__(self, path="", fmt='json', host=""):
+    def __init__(self, path='', fmt='json'):
         self._fmt = fmt
         self._path = path
-        self._host = host
-        if not path and not host:
+        if not path:
             raise DeclarationError()
 
     def __getattribute__(self, name):
         if name.startswith('_'):
             return super(Request, self).__getattribute__(name)
-        url = ""
-        if self._path:
+        url = ''
+        if ':' in self._path:  # host:port
+            url = '{host}/{func}'.format(host=self._path, func=name)
+        else:
             url = 'https://{s._fmt}.smappi.org/{s._path}/{func}'.format(s=self, func=name)
-        elif self._host:
-            url = '{s._host}/{s._path}/{func}'.format(s=self, func=name)
         def wrap(*args, **kwargs):
             if args:
                 raise PositionalArgumentsNotSupported()
