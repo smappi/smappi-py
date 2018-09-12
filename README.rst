@@ -38,3 +38,10 @@ Or use the full version:
    126
    >>> smappi.Request('adw0rd/example', 'json').calculator(digits='42,42,42')
    126
+   
+For local development and debug use "host" argument:
+
+.. code:: python
+
+    >>> from smappi import smappi
+    >>> smappi('adw0rd/example', host='localhost:8000').greeting(name='friend')
