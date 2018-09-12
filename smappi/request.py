@@ -44,7 +44,7 @@ class Request(object):
                 if isinstance(res, dict) and 'error' in res:
                     error = res['error']
                     if 'message' in error:
-                        error = '{message} (code: {code})'.format(**error)
+                        error = '{0} (code: {1})'.format(error.get('message'), error.get('code'))
                     raise SmappiAPIError(error)
             return res
         return wrap
