@@ -45,3 +45,4 @@ For local development and debug use "host" argument:
 
     >>> from smappi import smappi
     >>> smappi('adw0rd/example', host='localhost:8000').greeting(name='friend')
+    "Hello, friend!"
