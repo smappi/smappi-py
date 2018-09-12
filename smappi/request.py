@@ -24,9 +24,8 @@ class Request(object):
     def __getattribute__(self, name):
         if name.startswith('_'):
             return super(Request, self).__getattribute__(name)
-        url = ''
         if ':' in self._path:  # host:port
-            url = '{host}/{func}'.format(host=self._path, func=name)
+            url = 'http://{host}/{func}'.format(host=self._path, func=name)
         else:
             url = 'https://{s._fmt}.smappi.org/{s._path}/{func}'.format(s=self, func=name)
         def wrap(*args, **kwargs):
