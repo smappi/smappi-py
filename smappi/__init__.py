@@ -1,6 +1,7 @@
-__version__ = '0.1.2'
+__version__ = '0.1.3'
 
 from .request import Request
+from .exceptions import PositionalArgumentsNotSupported, SmappiServerError, SmappiAPIError
 
 
 def smappi(path='', fmt='json'):

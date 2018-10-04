@@ -43,8 +43,9 @@ class Request(object):
                 res = json.loads(res)
                 if isinstance(res, dict) and 'error' in res:
                     error = res['error']
-                    if 'message' in error:
-                        error = '{0} (code: {1})'.format(error.get('message'), error.get('code'))
-                    raise SmappiAPIError(error)
+                    message = error.get('message', '')
+                    if 'code' in error:
+                        message += ' (code: %s)' % error['code']
+                    raise SmappiAPIError(message, error)
             return res
         return wrap
