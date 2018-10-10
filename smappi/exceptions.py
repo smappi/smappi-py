@@ -19,6 +19,9 @@ class SmappiServerError(Exception):
         self.message = message
         self.kwargs = kwargs
 
+    def __str__(self):
+        return self.message
+
 
 class SmappiAPIError(SmappiServerError):
     pass
