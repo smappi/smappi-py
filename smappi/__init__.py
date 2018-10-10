@@ -1,4 +1,4 @@
-__version__ = '0.1.3'
+__version__ = '0.1.4'
 
 from .request import Request
 from .exceptions import PositionalArgumentsNotSupported, SmappiServerError, SmappiAPIError
