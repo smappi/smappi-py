@@ -4,11 +4,11 @@ try:
     PY3 = True
     from urllib.parse import urlencode
     from urllib.request import urlopen, Request as Req
-    from urllib.error import HTTPError
+    from urllib.error import HTTPError, URLError
 except ImportError:
     PY3 = False
     from urllib import urlencode
-    from urllib2 import urlopen, Request as Req, HTTPError
+    from urllib2 import urlopen, Request as Req, HTTPError, URLError
 
 from .exceptions import PositionalArgumentsNotSupported, SmappiServerError, SmappiAPIError, DeclarationError
 
@@ -39,6 +39,8 @@ class Request(object):
                 res = urlopen(req).read().decode()
             except HTTPError as e:
                 raise SmappiServerError(e)
+            except URLError as e:
+                raise SmappiServerError('%s for %s' % (e.args[0], url) )
             if self._fmt == 'json':
                 res = json.loads(res)
                 if isinstance(res, dict) and 'error' in res:

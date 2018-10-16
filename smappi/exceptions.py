@@ -16,7 +16,7 @@ class PositionalArgumentsNotSupported(Exception):
 class SmappiServerError(Exception):
 
     def __init__(self, message, **kwargs):
-        self.message = message
+        self.message = str(message)
         self.kwargs = kwargs
 
     def __str__(self):
