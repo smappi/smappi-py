@@ -38,9 +38,9 @@ class Request(object):
             try:
                 res = urlopen(req).read().decode()
             except HTTPError as e:
-                raise SmappiServerError(e)
+                raise SmappiServerError('%s (for "%s")' % (e, url))
             except URLError as e:
-                raise SmappiServerError('%s for %s' % (e.args[0], url) )
+                raise SmappiServerError('%s for %s' % (e.args[0], url))
             if self._fmt == 'json':
                 res = json.loads(res)
                 if isinstance(res, dict) and 'error' in res:
